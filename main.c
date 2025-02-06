@@ -1,25 +1,34 @@
 #include <rogue.h>
+
 const int MAP_HEIGHT = 25;
-const int MAP_WIDTH = 100;
+const int	MAP_WIDTH = 100;
 
 Entity* player;
 Tile** map;
 
 int main(void)
 {
-  Position start_pos;
+	Position start_pos;
+	bool compatibleTerminal;
 
-  cursesSetup();
+	compatibleTerminal = cursesSetup();
 
-  
-  map = createMapTiles();
-   start_pos = setupMap();
-   player = createPlayer(start_pos);
-  
-  gameLoop();
+	if (compatibleTerminal)
+	{
+		srand(time(NULL));
 
-  closeGame();
+		map = createMapTiles();
+		start_pos = setupMap();
+		player = createPlayer(start_pos);
 
-  return 0;
+		gameLoop();
+
+		closeGame();
+	}
+	else
+	{
+		endwin();
+	}
+
+	return 0;
 }
-
