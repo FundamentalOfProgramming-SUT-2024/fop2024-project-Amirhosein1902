@@ -1,3 +1,4 @@
+#include <rogue.h>
 
 bool cursesSetup(void)
 {
